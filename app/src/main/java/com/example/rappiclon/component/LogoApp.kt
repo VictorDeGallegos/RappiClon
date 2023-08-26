@@ -1,13 +1,15 @@
-package com.example.rappiclon.screen
+package com.example.rappiclon.component
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
@@ -33,45 +35,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.rappiclon.R
-import com.example.rappiclon.component.ButtonBase
-import com.example.rappiclon.component.LogoApp
-import com.example.rappiclon.component.TextClickBase
-import com.example.rappiclon.component.TextFieldBase
-import com.example.rappiclon.component.TextFieldPasswordBase
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
-fun LoginScreen() {
-    //Variables de inicio de sesión
-    val emailValue = remember { mutableStateOf("") }
-    val passwordValue = remember { mutableStateOf("") }
-    val passwordVisible = remember { mutableStateOf(false) }
-
-    Scaffold {
-        LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-        ) {
-            item {
-                //Logo
-                LogoApp()
-                Spacer(modifier = Modifier.padding(20.dp))
-                //Email
-                TextFieldBase("Correo electrónico", emailValue)
-                Spacer(modifier = Modifier.padding(5.dp))
-                //Contraseña
-                TextFieldPasswordBase("Contraseña", passwordValue, passwordVisible)
-                Spacer(modifier = Modifier.padding(5.dp))
-                //Botón de inicio de sesión
-                ButtonBase("Iniciar sesión", onClick = {
-                })
-                // Texto de registro
-                TextClickBase("¿No tienes cuenta? Regístrate", onClick = {})
-            }
-        }
+fun LogoApp() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.rappi_logo),
+            contentDescription = "",
+            modifier = Modifier.size(100.dp)
+        )
+        Text(
+            text = "Fácil, rápido y seguro", fontSize = 25.sp,
+            style = TextStyle(
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 5.sp,
+                color = MaterialTheme.colorScheme.primary
+            )
+        )
     }
+
 }
