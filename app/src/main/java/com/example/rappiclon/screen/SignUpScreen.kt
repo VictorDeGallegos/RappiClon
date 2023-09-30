@@ -15,17 +15,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.rappiclon.component.ButtonBase
 import com.example.rappiclon.component.LogoApp
 import com.example.rappiclon.component.TextClickBase
 import com.example.rappiclon.component.TextFieldBase
 import com.example.rappiclon.component.TextFieldPasswordBase
+import com.example.rappiclon.navigation.Screen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(navController: NavController) {
     //Variables de inicio de sesión
     val nameValue = remember { mutableStateOf("") }
     val emailValue = remember { mutableStateOf("") }
@@ -65,7 +66,13 @@ fun SignUpScreen() {
                 ButtonBase("Registrarse", onClick = {})
                 Spacer(modifier = Modifier.padding(5.dp))
                 // Texto de inicio de sesión
-                TextClickBase("¿Ya tienes una cuenta? Inicia sesión", onClick = {})
+                TextClickBase("¿Ya tienes una cuenta? Inicia sesión", onClick = {
+                    navController.navigate(Screen.LoginScreen.route){
+                        popUpTo(Screen.SignUpScreen.route){
+                            inclusive = true
+                        }
+                    }
+                })
             }
         }
     }

@@ -39,52 +39,14 @@ import com.example.rappiclon.component.LogoApp
 import com.example.rappiclon.component.TextClickBase
 import com.example.rappiclon.component.TextFieldBase
 import com.example.rappiclon.component.TextFieldPasswordBase
-import com.example.rappiclon.navigation.Screen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navController: NavController) {
-    //Variables de inicio de sesión
-    val emailValue = remember { mutableStateOf("") }
-    val passwordValue = remember { mutableStateOf("") }
-    val passwordVisible = remember { mutableStateOf(false) }
+fun HomeScreen(navController: NavController) {
+
 
     Scaffold {
-        LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-        ) {
-            item {
-                //Logo
-                LogoApp()
-                Spacer(modifier = Modifier.padding(20.dp))
-                //Email
-                TextFieldBase("Correo electrónico", emailValue)
-                Spacer(modifier = Modifier.padding(5.dp))
-                //Contraseña
-                TextFieldPasswordBase("Contraseña", passwordValue, passwordVisible)
-                Spacer(modifier = Modifier.padding(5.dp))
-                //Botón de inicio de sesión
-                ButtonBase("Iniciar sesión", onClick = {
-                    navController.navigate(Screen.HomeScreen.route){
-                        popUpTo(Screen.LoginScreen.route){
-                            inclusive = true
-                        }
-                    }
-                })
-                // Texto de registro
-                TextClickBase("¿No tienes cuenta? Regístrate", onClick = {
-                    navController.navigate(Screen.SignUpScreen.route){
-                        popUpTo(Screen.LoginScreen.route){
-                            inclusive = true
-                        }
-                    }
 
-                })
-            }
-        }
     }
 }
